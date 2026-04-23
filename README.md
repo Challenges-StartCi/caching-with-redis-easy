@@ -23,7 +23,42 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository with Redis caching implementation.
+
+## API Documentation
+
+The application exposes the following endpoints:
+
+### Products
+
+#### 1. Get All Products
+Retrieves all products. If available, the data is served from Redis cache.
+
+- **URL:** `/products`
+- **Method:** `GET`
+- **Response Code:** `200 OK`
+- **Response Body:**
+  ```json
+  [
+    { "id": 1, "name": "Laptop", "price": 999 },
+    { "id": 2, "name": "Phone", "price": 699 }
+  ]
+  ```
+
+#### 2. Create Product
+Creates a new product and invalidates the `products` cache.
+
+- **URL:** `/products`
+- **Method:** `POST`
+- **Payload:**
+  ```json
+  { "name": "Tablet", "price": 499 }
+  ```
+- **Response Code:** `201 Created`
+- **Response Body:**
+  ```json
+  { "id": 4, "name": "Tablet", "price": 499 }
+  ```
 
 ## Project setup
 
